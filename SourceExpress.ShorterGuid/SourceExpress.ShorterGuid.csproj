@@ -17,10 +17,11 @@ It uses Base32-ish encoding, and only uses the following character set: `012345a
     <RepositoryUrl>https://github.com/SourceExpress/shorter-guid/</RepositoryUrl>
     <PackageTags>Guid ShorterGuid Identifiers Convert Base32 SourceExpress</PackageTags>
     <PackageReleaseNotes>
+- 1.0.1 Fixed nuget configuration
 - 1.0.0 Initial release.
     </PackageReleaseNotes>
     <Copyright>Copyright 2022</Copyright>
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
