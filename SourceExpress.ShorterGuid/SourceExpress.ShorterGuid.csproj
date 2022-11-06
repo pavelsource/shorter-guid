@@ -5,7 +5,8 @@
     <Nullable>enable</Nullable>
     <RootNamespace>SourceExpress</RootNamespace>
     <Authors>Pavel Morshenyuk</Authors>
-    <Company>SourceExpress</Company>
+    <Company>Source Express</Company>
+    <Title>SourceExpress.ShorterGuid</Title>
     <Description>
 This library contains extension methods `ToShorterString()` for `Guid` and `FromShorterString()` for `String`. It generates a 26 character string from the Guid, which is **URL-safe** and **case-insensitive**!
 
@@ -25,4 +26,8 @@ It uses Base32-ish encoding, and only uses the following character set: `012345a
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <ItemGroup>
+      <None Include="../LICENSE" Pack="true" PackagePath="" />
+       <None Include="../README.md" Pack="true" PackagePath=""/>
+  </ItemGroup>
 </Project>

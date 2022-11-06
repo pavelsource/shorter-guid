@@ -49,19 +49,19 @@ public static class ShorterGuid
         return result.ToString();
     }
 
-    public static Guid FromShorterString(this string encoded)
+    public static Guid FromShorterString(this string shorterString)
     {
-        if (encoded == null)
-            throw new ArgumentNullException(nameof(encoded));
+        if (shorterString == null)
+            throw new ArgumentNullException(nameof(shorterString));
 
-        if (encoded.Length != _outputLength)
+        if (shorterString.Length != _outputLength)
             throw new ArgumentOutOfRangeException($"Encoded string should be exactly {_outputLength} characters long");
 
         var result = new byte[_bytesinGuid];
         var buffer = 0;
         var next = 0;
         var bitsLeft = 0;
-        foreach (var c in encoded.ToLower())
+        foreach (var c in shorterString.ToLower())
         {
             if (!reversedDictionary.ContainsKey(c))
                 throw new FormatException($"Invalid character: '{c}'");
