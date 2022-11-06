@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>SourceExpress</RootNamespace>
+    <Authors>Pavel Morshenyuk</Authors>
+    <Company>SourceExpress</Company>
+    <Description>
+This library contains extension methods `ToShorterString()` for `Guid` and `FromShorterString()` for `String`. It generates a 26 character string from the Guid, which is **URL-safe** and **case-insensitive**!
+
+It uses Base32-ish encoding, and only uses the following character set: `012345abcdefghijklmnopqrstuvwxyz`.
+    </Description>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageProjectUrl>https://github.com/SourceExpress/shorter-guid/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/SourceExpress/shorter-guid/</RepositoryUrl>
+    <PackageTags>Guid ShorterGuid Identifiers Convert Base32 SourceExpress</PackageTags>
+    <PackageReleaseNotes>
+- 1.0.0 Initial release.
+    </PackageReleaseNotes>
+    <Copyright>Copyright 2022</Copyright>
+    <Version>1.0.0</Version>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+</Project>
