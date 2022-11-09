@@ -1,12 +1,9 @@
-﻿using System.Collections;
-using System.Diagnostics;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
 namespace SourceExpress.ShorterGuid;
 public static class ShorterGuid
 {
-    private static char[] dictionary = "012345abcdefghijklmnopqrstuvwxyz".ToCharArray();
+    private static char[] dictionary = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567".ToCharArray(); // RFC 4648 Base32
     private static Dictionary<char, int> reversedDictionary = new Dictionary<char, int>(dictionary.Select((c, index) => new KeyValuePair<char, int>(c, index)));
     private const int _bitMask = 31;
     private const int _bitShift = 5; // 5 bits max value is 32, i.e. we need 32 chars to encode 5 bits
@@ -15,10 +12,25 @@ public static class ShorterGuid
     private const int _outputLength = 26; // (128 bits in Guid / 5 bits) = ~26 chars
 
 
+    /// <summary>
+    /// Converts Guid to a 26-character long Base32-encoded string in lower case. It uses RFC 4648 Base32 alphabet
+    /// </summary>
+    /// <param name="guid">Target Guid</param>
+    /// <returns>Base32-encoded Guid in lower case</returns>
+    public static string ToLowerShorterString(this Guid guid)
+    {
+        return guid.ToShorterString().ToLower();
+    }
+
+    /// <summary>
+    /// Converts Guid to a 26-character long Base32-encoded string in upper case. It uses RFC 4648 Base32 alphabet
+    /// </summary>
+    /// <param name="guid">Target Guid</param>
+    /// <returns>Base32-encoded Guid in upper case</returns>
     public static string ToShorterString(this Guid guid)
     {
         var data = guid.ToByteArray();
-        var result = new StringBuilder(_outputLength); 
+        var result = new StringBuilder(_outputLength);
 
         var last = data.Length;
         var offset = 0;
@@ -31,7 +43,7 @@ public static class ShorterGuid
                 if (offset < last)
                 {
                     buffer <<= _bitsInByte;
-                    buffer |= (data[offset++] & 0xff);
+                    buffer |= (data[offset++] & byte.MaxValue);
                     bitsLeft += _bitsInByte;
                 }
                 else
@@ -49,6 +61,11 @@ public static class ShorterGuid
         return result.ToString();
     }
 
+    /// <summary>
+    /// Converts 26-character long Base32-encoded string to Guid. It is case-insensitive and uses RFC 4648 Base32 alphabet
+    /// </summary>
+    /// <param name="shorterString">Base32-encoded Guid</param>
+    /// <returns>Original Guid</returns>
     public static Guid FromShorterString(this string shorterString)
     {
         if (shorterString == null)
@@ -61,7 +78,7 @@ public static class ShorterGuid
         var buffer = 0;
         var next = 0;
         var bitsLeft = 0;
-        foreach (var c in shorterString.ToLower())
+        foreach (var c in shorterString.ToUpperInvariant())
         {
             if (!reversedDictionary.ContainsKey(c))
                 throw new FormatException($"Invalid character: '{c}'");

@@ -8,20 +8,20 @@
     <Company>Source Express</Company>
     <Title>SourceExpress.ShorterGuid</Title>
     <Description>
-This library contains extension methods `ToShorterString()` for `Guid` and `FromShorterString()` for `String`. It generates a 26 character string from the Guid, which is **URL-safe** and **case-insensitive**!
-
-It uses Base32-ish encoding, and only uses the following character set: `012345abcdefghijklmnopqrstuvwxyz`.
+This library allows you to convert Guid to 26-character long string using RFC 4648 Base32 encoding (ABCDEFGHIJKLMNOPQRSTUVWXYZ234567), it is URL-safe, case-insensitive. You can also decode string back to Guid.
     </Description>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/SourceExpress/shorter-guid/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/SourceExpress/shorter-guid/</RepositoryUrl>
     <PackageTags>Guid ShorterGuid Identifiers Convert Base32 SourceExpress</PackageTags>
     <PackageReleaseNotes>
+- 2.0.0 Migrated to RFC 4648 Base32 encoding
 - 1.0.1 Fixed nuget configuration
 - 1.0.0 Initial release.
     </PackageReleaseNotes>
     <Copyright>Copyright 2022</Copyright>
-    <Version>1.0.1</Version>
+    <Version>2.0.0</Version>
+    <ReleaseVersion>2.0.0</ReleaseVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -29,6 +29,6 @@ It uses Base32-ish encoding, and only uses the following character set: `012345a
   </PropertyGroup>
   <ItemGroup>
       <None Include="../LICENSE" Pack="true" PackagePath="" />
-       <None Include="../README.md" Pack="true" PackagePath=""/>
+       <None Include="../README.md" Pack="true" PackagePath="" />
   </ItemGroup>
 </Project>

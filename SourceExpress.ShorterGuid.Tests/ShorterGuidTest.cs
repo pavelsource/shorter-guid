@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using Xunit.Abstractions;
+﻿using Xunit.Abstractions;
 
 namespace SourceExpress.ShorterGuid.Tests;
 
@@ -17,7 +16,7 @@ public class ShorterGuidTest
     {
 
         var shorterGuid = Guid.Empty.ToShorterString();
-        Assert.Equal("00000000000000000000000000", shorterGuid);
+        Assert.Equal("AAAAAAAAAAAAAAAAAAAAAAAAAA", shorterGuid);
     }
 
     [Fact]
@@ -35,14 +34,14 @@ public class ShorterGuidTest
     [Fact]
     public void TestCharException()
     {
-        var wrongValue = "g0h2o50ibvk4b2g2rqz5k3psg_";
+        var wrongValue = "2YPHP2BWJYHUFOAUWKXUHU4UB_";
         Assert.Throws<FormatException>(() => wrongValue.FromShorterString());
     }
 
     [Fact]
     public void TestLengthException()
     {
-        var wrongValue = "g0h2o50ibvk4b2g2rqz5k3psgsg0h2o50ibvk4b2g2rqz5k3psgs";
+        var wrongValue = "2YPHP2BWJYHUFOAUWKXUHU4UB42YPHP2BWJYHUFOAUWKXUHU4UB4";
         Assert.Throws<ArgumentOutOfRangeException>(() => wrongValue.FromShorterString());
     }
 }
